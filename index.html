@@ -6,9 +6,15 @@
   <title>Gen-Memes</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
+<body> 
+  
   <div class="container">
+    
     <h1>Bienvenue sur Gen-Memes 🤩</h1>
+    <div><button onclick="window.location.href='gallery.html'" class="gallery-btn">Galerie</button>
+</div>
+
+    
     <input type="file" id="upload" accept="image/*" />
     <input type="text" id="topText" placeholder="Texte du haut" />
     <input type="text" id="bottomText" placeholder="Texte du bas" />
@@ -32,14 +38,21 @@
       </label>
     </div>
 
-    <button onclick="generateMeme()">Générer</button>
-    <canvas id="memeCanvas"></canvas>
-    <button onclick="downloadMeme()">Télécharger le mème</button>
-    <button onclick="shareMeme()">Partager le mème</button>
-    <button onclick="clearGallery()">🗑️ Vider la galerie</button>
+    <div>
+      <button onclick="generateMeme()">Générer</button>
+    </div>
 
-    <h2>📸 Galerie de mèmes</h2>
-    <div id="gallery"></div>
+
+    <canvas id="memeCanvas"></canvas>
+    <div>
+      <button onclick="downloadMeme()">Télécharger le mème</button>
+      <button onclick="shareMeme()">Partager le mème</button>
+    </div>
+    <!-- <button onclick="clearGallery()">🗑️ Vider la galerie</button> -->
+    <!-- <button onclick="window.location.href='gallery.html'">Galerie</button> -->
+
+    <!-- <h2>📸 Galerie de mèmes</h2>
+    <div id="gallery"></div> -->
   </div>
   <script src="script.js"></script>
 </body>

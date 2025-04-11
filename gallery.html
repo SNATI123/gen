@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Galerie de Mèmes</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<style>
+  body {
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  }
+  .overlay {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid white;
+    border-radius: 15px;
+    min-height: 90vh;
+  width: 90%;
+  padding: 20px;
+  box-sizing: border-box
+  
+  }
+</style>
+<body>
+  <div class="overlay">
+    <div class="container">
+      <div>
+        <button onclick="window.location.href='index.html'" class="gallery-btn">Retour à l'éditeur</button>
+      </div>
+      <h1>Galerie de memes 📸 </h1>
+    
+      <div id="gallery"></div>
+
+
+      <button onclick="clearGallery()" class="clear-btn">🗑️ Vider la galerie</button>
+
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -5,45 +5,118 @@ body {
   background-size: cover;
   color: #000000;
   padding: 20px;
+
+}
+
+h1 {
+  background-color: #000000;
+  padding: 20px;
+  border-radius: 15px;
+  margin: 20px auto;
+  width: fit-content;
+  max-width: 70%;
+  box-sizing: border-box;
+  color: #ffffff;
+  font-size: 32px;
+  text-align: center;
 }
 
 .overlay {
-  background: rgba(0.9, 0.9, 0.9, 0.99) ;
+  /* background: rgba(0.9, 0.9, 0.9, 0.99) ; */
   min-height: 100vh;
   width: 100%;
   padding: 20px;
   box-sizing: border-box;
 } 
 
-.container {
-  max-width: 600px;
-  margin: auto;
-}
-canvas {
-  border: 1px solid #555;
-  margin-top: 20px;
-  max-width: 100%;
-  background-color: #222;
-}
-input[type="text"], input[type="file"] {
-  margin: 10px 0;
-  padding: 15px;
-  width: 100%;
-  box-sizing: border-box;
-  background:transparent;
-  color: #000000;
-  border: 1px solid #ffffff;
-  border-radius: 4px;
-}
-button {
-  margin-top: 10px;
-  padding: 10px 20px;
+.clear-btn {
+  margin-top: 20%;
+  padding: 15px 25px;
   cursor: pointer;
   background-color: #333;
   color: white;
   border: none;
   border-radius: 4px;
   transition: background-color 0.3s ease;
+  font-size: 20px;
+  cursor: pointer;
+}
+.clear-btn:hover {
+  background-color: #555;
+}
+
+.container {
+  max-width: 60%;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+}
+canvas {
+  border: 1px solid #555;
+  margin-top: 20px;
+  max-width: 100%;
+  background-color: #ffffff;
+}
+input[type="text"], input[type="file"] {
+  margin: 10px 20px;
+  padding: 15px;
+  width: 70%;
+  box-sizing: border-box;
+  background:transparent;
+  color: #000000;
+  border: 1px solid #ffffff;
+  border-radius: 4px;
+  font-size: 20px;
+
+}
+
+input[type="color"], input[type="number"], select {
+  width: 100px;
+  height: 30px;
+  font-size: 20px;
+}
+
+input::placeholder {
+  color: #414141;
+  opacity: 1;
+}
+
+label {
+  margin: 10px 0;
+  font-size: 20px;
+}
+
+.gallery-btn {
+  position: absolute;
+  top: 30px;
+  right: 15%;
+  background-color: #000000;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 20px 30px;
+  font-size: 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+}
+
+.gallery-btn:hover {
+  background-color: #252525;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+button {
+  margin-top: 10px;
+  padding: 15px 25px;
+  cursor: pointer;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  font-size: 20px;
+  cursor: pointer;
 }
 button:hover {
   background-color: #555;
@@ -53,7 +126,7 @@ button:hover {
   flex-wrap: wrap;
   justify-content: center;
   gap: 10px;
-  margin-top: 20px;
+  margin-top: 7%;
 }
 .gallery-item {
   position: relative;
