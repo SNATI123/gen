@@ -3,7 +3,6 @@ const ctx = canvas.getContext("2d");
 let image = new Image();
 let isSharingInProgress = false; // contrôle du partage
 
-// Charger l'image depuis l'input
 upload.addEventListener("change", (e) => {
   const file = e.target.files[0];
   const reader = new FileReader();
@@ -13,21 +12,23 @@ upload.addEventListener("change", (e) => {
   if (file) reader.readAsDataURL(file);
 });
 
-// Dessiner l'image + texte
 function generateMeme() {
   const topText = document.getElementById("topText").value;
   const bottomText = document.getElementById("bottomText").value;
+  const font = document.getElementById("fontSelect").value;
+  const color = document.getElementById("textColor").value;
+  const customFontSize = parseInt(document.getElementById("fontSize").value);
 
   const renderMeme = () => {
     canvas.width = image.width;
     canvas.height = image.height;
     ctx.drawImage(image, 0, 0);
 
-    const fontSize = Math.floor(canvas.width / 12);
-    ctx.font = `${fontSize}px Impact`;
-    ctx.fillStyle = "white";
+    const fontSize = customFontSize || Math.floor(canvas.width / 12);
+    ctx.font = `${fontSize}px ${font}`;
+    ctx.fillStyle = color;
     ctx.strokeStyle = "black";
-    ctx.lineWidth = fontSize / 20;
+    ctx.lineWidth = fontSize / 60;
     ctx.textAlign = "center";
 
     ctx.fillText(topText, canvas.width / 2, fontSize);
@@ -46,7 +47,6 @@ function generateMeme() {
   }
 }
 
-// Télécharger le mème
 function downloadMeme() {
   const link = document.createElement("a");
   link.download = "meme.png";
@@ -54,7 +54,13 @@ function downloadMeme() {
   link.click();
 }
 
-// Partager le mème (générique)
+function downloadImage(dataUrl) {
+  const a = document.createElement("a");
+  a.href = dataUrl;
+  a.download = "meme.png";
+  a.click();
+}
+
 function shareImageData(dataUrl) {
   if (isSharingInProgress) {
     alert("Le partage est déjà en cours. Patiente un instant.");
@@ -84,13 +90,11 @@ function shareImageData(dataUrl) {
   }
 }
 
-// Partager le mème courant
 function shareMeme() {
   const dataUrl = canvas.toDataURL();
   shareImageData(dataUrl);
 }
 
-// Sauvegarde du mème dans la galerie (sans limite)
 function saveMemeToGallery() {
   const imgData = canvas.toDataURL("image/jpeg", 0.8);
   if (!imgData || imgData.length < 1000) return;
@@ -104,12 +108,11 @@ function saveMemeToGallery() {
   loadGallery();
 }
 
-// Affichage de la galerie
 function loadGallery() {
   const galleryDiv = document.getElementById("gallery");
   galleryDiv.innerHTML = "";
   const gallery = JSON.parse(localStorage.getItem("memes")) || [];
-  gallery.forEach(data => {
+  gallery.forEach((data, index) => {
     const wrapper = document.createElement("div");
     wrapper.className = "gallery-item";
 
@@ -124,17 +127,40 @@ function loadGallery() {
       shareImageData(data);
     };
 
+    const downloadBtn = document.createElement("button");
+    downloadBtn.textContent = "Télécharger";
+    downloadBtn.className = "download-btn";
+    downloadBtn.onclick = (e) => {
+      e.stopPropagation();
+      downloadImage(data);
+    };
+
+    const deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "✖";
+    deleteBtn.className = "delete-btn";
+    deleteBtn.onclick = (e) => {
+      e.stopPropagation();
+      deleteMeme(index);
+    };
+
     wrapper.appendChild(img);
     wrapper.appendChild(shareBtn);
+    wrapper.appendChild(downloadBtn);
+    wrapper.appendChild(deleteBtn);
     galleryDiv.appendChild(wrapper);
   });
 }
 
-// Vider la galerie
+function deleteMeme(index) {
+  let gallery = JSON.parse(localStorage.getItem("memes")) || [];
+  gallery.splice(index, 1);
+  localStorage.setItem("memes", JSON.stringify(gallery));
+  loadGallery();
+}
+
 function clearGallery() {
   localStorage.removeItem("memes");
   loadGallery();
 }
 
-// Charger la galerie au démarrage
 window.onload = loadGallery;

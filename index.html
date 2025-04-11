@@ -12,6 +12,26 @@
     <input type="file" id="upload" accept="image/*" />
     <input type="text" id="topText" placeholder="Texte du haut" />
     <input type="text" id="bottomText" placeholder="Texte du bas" />
+
+    <div class="text-options">
+      <label>Police :
+        <select id="fontSelect">
+          <option value="Impact">Impact</option>
+          <option value="Arial">Arial</option>
+          <option value="Comic Sans MS">Comic Sans MS</option>
+          <option value="Times New Roman">Times New Roman</option>
+        </select>
+      </label>
+
+      <label>Couleur du texte :
+        <input type="color" id="textColor" value="#ffffff" />
+      </label>
+
+      <label>Taille du texte :
+        <input type="number" id="fontSize" min="10" max="100" value="40" />
+      </label>
+    </div>
+
     <button onclick="generateMeme()">Générer</button>
     <canvas id="memeCanvas"></canvas>
     <button onclick="downloadMeme()">Télécharger le mème</button>
