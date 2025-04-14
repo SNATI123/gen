@@ -1,23 +1,29 @@
+/* Styles de base pour tous les écrans */
 body {
   font-family: Arial, sans-serif;
   text-align: center;
-  background-image: url(img/bg.png) ;
+  background-image: url(img/bg.png);
   background-size: cover;
+  background-attachment: fixed;
   color: #000000;
   padding: 20px;
-
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 h1 {
-  background-color: #000000;
+  background-color: rgba(0, 0, 0, 0.8);
   padding: 20px;
   border-radius: 15px;
   margin: 20px auto;
   width: fit-content;
-  max-width: 70%;
+  max-width: 90%;
   box-sizing: border-box;
   color: #ffffff;
-  font-size: 32px;
+  font-size: clamp(24px, 5vw, 32px);
   text-align: center;
 }
 
@@ -27,7 +33,7 @@ h1 {
   width: 100%;
   padding: 20px;
   box-sizing: border-box;
-} 
+}
 
 .clear-btn {
   margin-top: 20%;
@@ -35,28 +41,33 @@ h1 {
   cursor: pointer;
   background-color: #333;
   color: white;
+  width: max-content;
   border: none;
   border-radius: 4px;
   transition: background-color 0.3s ease;
   font-size: 20px;
   cursor: pointer;
 }
+
 .clear-btn:hover {
   background-color: #555;
 }
 
 .container {
-  max-width: 60%;
-  margin: auto;
-  align-items: center;
-  justify-content: center;
+  width: 100%;
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 0 20px;
+  box-sizing: border-box;
 }
+
 canvas {
   border: 1px solid #555;
   margin-top: 20px;
-  max-width: 100%;
+  max-width: 60%;
   background-color: #ffffff;
 }
+
 input[type="text"], input[type="file"] {
   margin: 10px 20px;
   padding: 15px;
@@ -67,7 +78,6 @@ input[type="text"], input[type="file"] {
   border: 1px solid #ffffff;
   border-radius: 4px;
   font-size: 20px;
-
 }
 
 input[type="color"], input[type="number"], select {
@@ -118,9 +128,11 @@ button {
   font-size: 20px;
   cursor: pointer;
 }
+
 button:hover {
   background-color: #555;
 }
+
 #gallery {
   display: flex;
   flex-wrap: wrap;
@@ -128,19 +140,23 @@ button:hover {
   gap: 10px;
   margin-top: 7%;
 }
+
 .gallery-item {
   position: relative;
 }
+
 .gallery-item img {
-  width: 150px;
+  width: 160px;
   height: auto;
   border: 2px solid #444;
   border-radius: 6px;
   transition: transform 0.2s;
 }
+
 .gallery-item img:hover {
   transform: scale(1.05);
 }
+
 .share-btn,
 .download-btn {
   position: absolute;
@@ -149,16 +165,22 @@ button:hover {
   color: #fff;
   padding: 4px 6px;
   font-size: 12px;
+  width: max-content;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+
 }
+
 .share-btn {
   right: 5px;
+  margin-left: 2px;
 }
+
 .download-btn {
   left: 5px;
 }
+
 .delete-btn {
   position: absolute;
   top: 5px;
@@ -173,4 +195,112 @@ button:hover {
   line-height: 20px;
   padding: 0;
   cursor: pointer;
-} 
+}
+
+/* Styles pour les petits écrans (mobiles) */
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: clamp(20px, 5vw, 28px);
+    padding: 15px;
+  }
+
+  input[type="text"], input[type="file"] {
+    width: 90%;
+    font-size: 13px;
+    padding: 10px;
+  }
+
+  label{
+    font-size: 17px;
+    margin: 10px 0;
+  }
+
+  .text-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 15px 0;
+  }
+
+  .gallery-btn {
+    padding: 15px 20px;
+    font-size: 16px;
+    position: fixed;
+    right: 10px;
+    top: 10px;
+    z-index: 1000;
+  }
+
+  canvas {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    margin: 15px auto;
+  }
+
+  button {
+    width: 90%;
+    margin: 10px auto;
+    font-size: 16px;
+    padding: 12px;
+  }
+}
+
+/* Styles pour les grands écrans */
+@media screen and (min-width: 769px) {
+  .container {
+    padding: 20px;
+  }
+
+  .return-btn {
+    margin-top: 55px;
+  }
+
+  .text-options {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  canvas {
+    width: 100%;
+    height: auto;
+    max-height: 600px;
+    margin: 20px auto;
+  }
+
+  button {
+    width: 200px;
+    margin: 10px 5px;
+    font-size: 20px;
+    padding: 15px;
+  }
+}
+
+/* Styles pour les très grands écrans */
+@media screen and (min-width: 1200px) {
+  .container {
+    max-width: 1000px;
+  }
+
+  canvas {
+    max-height: 800px;
+  }
+}
+
+/* Styles pour les téléphones en mode portrait */
+@media screen and (max-width: 480px) {
+  h1 {
+    font-size: clamp(18px, 5vw, 24px);
+  }
+
+  .gallery-btn {
+    padding: 12px 15px;
+    font-size: 14px;
+  }
+}
